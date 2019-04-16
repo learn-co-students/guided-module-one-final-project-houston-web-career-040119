@@ -34,6 +34,7 @@ elsif @choice == "Register"
     else
         @newusername = @input_user
         @newpassword = @input_pw
+        Midstream.create()
 
     end
 end
