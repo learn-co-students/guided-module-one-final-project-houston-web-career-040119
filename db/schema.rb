@@ -10,16 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 5) do
-=======
-ActiveRecord::Schema.define(version: 3) do
-
-  create_table "contracts", force: :cascade do |t|
-    t.string "midstream_id"
-    t.string "producer_id"
-  end
->>>>>>> afc84cfaae9ab435bb9ee4af733a88d412ad2148
 
   create_table "midstreams", force: :cascade do |t|
     t.string "rep_name"
@@ -27,7 +18,12 @@ ActiveRecord::Schema.define(version: 3) do
     t.string "password"
   end
 
-<<<<<<< HEAD
+  create_table "mprcontracts", force: :cascade do |t|
+    t.string "midstream_id"
+    t.string "producer_id"
+    t.integer "total_price"
+  end
+
   create_table "mpucontracts", force: :cascade do |t|
     t.string "name"
     t.integer "midstream_id"
@@ -35,21 +31,21 @@ ActiveRecord::Schema.define(version: 3) do
     t.integer "total_price"
   end
 
+  create_table "producers", force: :cascade do |t|
+    t.string "producer_name"
+    t.string "type_of_product"
+    t.integer "amount_liftable"
+    t.string "location"
+    t.integer "daily_production"
+    t.integer "price_per_bbl"
+  end
+
   create_table "purchasers", force: :cascade do |t|
     t.string "purchaser_name"
     t.text "type_of_product"
     t.integer "amount_demand"
     t.string "location"
-    t.integer "price_per_unit"
-=======
-  create_table "producers", force: :cascade do |t|
-    t.string  "producer_name"
-    t.string  "type_of_product"
-    t.integer "amount_liftable"
-    t.string  "location"
-    t.integer "daily_production"
-    t.integer "price"
->>>>>>> afc84cfaae9ab435bb9ee4af733a88d412ad2148
+    t.integer "price_per_bbl"
   end
 
 end

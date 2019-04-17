@@ -1,4 +1,4 @@
-class CreateMidstreams < ActiveRecord::Migration[5.0]
+class CreateMidstreams < ActiveRecord::Migration[5.2]
   def change
     create_table :midstreams do |t|
       t.string :rep_name

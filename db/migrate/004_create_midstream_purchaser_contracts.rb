@@ -1,4 +1,4 @@
-class CreateMidstreamPurchaserContract < ActiveRecord::Migration[5.2]
+class CreateMidstreamPurchaserContracts < ActiveRecord::Migration[5.2]
   def change
     create_table :mpucontracts do |t|
       t.string :name

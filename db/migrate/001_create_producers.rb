@@ -1,4 +1,4 @@
-class CreateProducers < ActiveRecord::Migration[5.0]
+class CreateProducers < ActiveRecord::Migration[5.2]
   def change
     create_table :producers do |t|
       t.string  :producer_name
@@ -6,7 +6,7 @@ class CreateProducers < ActiveRecord::Migration[5.0]
       t.integer :amount_liftable
       t.string  :location
       t.integer :daily_production
-      t.integer :price
+      t.integer :price_per_bbl
     end
   end
 end

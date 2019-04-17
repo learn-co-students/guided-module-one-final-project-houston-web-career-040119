@@ -4,39 +4,20 @@ require 'tty-prompt'
 @prompt = TTY::Prompt.new
 
 require_relative '../lib/models/query_method.rb'
+require_relative '../lib/models/run_loops.rb'
 
 
 #option for login or register 
 
 welcome_page
 if @choice == "Login"
-    username
-    if Midstream.find_by(user_name:@input_user)
-        password
-        if Midstream.find_by(password:@input_pw)
-            puts "\e[H\e[2J"
-            choose_location
-            choose_type_of_product
-            @demand = demand_amount
-        end
-    end
+    puts "\e[H\e[2J"
+    login_loop
 elsif @choice == "Register"
     puts "\e[H\e[2J"
-    username
-    if Midstream.find_by(user_name:@input_user)
-        puts "User already exists, please login"
-        @choice1 = @prompt.select("Choose your option", %w(Login Exit))
-        if @choice1 == "Login"
-            welcome_page
-        else
-            puts "Thank you for using "
-        end
-    else
-        @newusername = @input_user
-        @newpassword = @input_pw
-        Midstream.create()
-
-    end
+    register_loop
+else
+    exit
 end
 
 
