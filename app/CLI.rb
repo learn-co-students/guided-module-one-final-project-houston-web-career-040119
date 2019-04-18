@@ -2,7 +2,8 @@ require_relative '../config/environment'
 require 'tty-prompt'
 require 'pry'
 
-@prompt = TTY::Prompt.new
+@prompt = TTY::Prompt.new(active_color: :cyan)
+@dollar = @prompt.decorate('$', :magenta)
 
 # require_relative '../lib/models/query_method.rb'
 # require_relative '../lib/models/run_loops.rb'

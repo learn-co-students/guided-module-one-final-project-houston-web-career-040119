@@ -1,5 +1,5 @@
 def account_info
-    puts "\e[H\e[2J"
+    puts "\e[H\e[2J "
     all_contracts_arr
     future_contracts_arr
     @user = Midstream.find_by(user_name: @input_user)

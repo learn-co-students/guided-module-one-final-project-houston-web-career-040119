@@ -9,7 +9,7 @@ def login_loop
                 puts "Wrong password, please enter again:"
                 password
             end
-            mpucontracts
+            user_menu_loop
         end
     else
         puts "User does not exist, please register first."
@@ -28,7 +28,7 @@ def register_loop
             exit
         end
     elsif
-        @input_user == nil || input_user.include(" ")
+        @input_user == nil || @input_user.include?(" ")
         puts "User name cannot contain space, please try again"
         register_loop
     else
@@ -71,7 +71,8 @@ def account_management_menu_loop
         if Midstream.find_by(user_name: @input_user).password == @input_pw
             new_password_loop
         else
-            puts "Wrong Password!"
+            puts "Wrong password, 3 seconds to return to the main menu!"
+            countdown(3)
             main_menu
         end
     else
@@ -82,9 +83,10 @@ end
 
 def new_password_loop
     new_password
-    if @input_npw1 == @input_npw2 && input_npw1 != input_pw
-
-    elsif @input_npw1 == @input_npw2 && @input_npw2 == input_pw
+    if @input_npw1 == @input_npw2 && @input_npw1 != @input_pw
+        Midstream.update(password: @input_npw1)
+        account_management_menu_loop
+    elsif @input_npw1 == @input_npw2 && @input_npw2 == @input_pw
         puts "Password doesn't change please try again!"
         new_password_loop
     else
@@ -103,7 +105,8 @@ def contracts_loop
     when "Create Contract w Producer"
         mprcontracts
     when "All Contracts"
-        case all_contracts
+        all_contracts
+        case @prompt.select("", %w(Previous Exit))
         when "Previous"
             puts "\e[H\e[2J"
             contracts_loop
@@ -111,7 +114,8 @@ def contracts_loop
             exit
         end
     when "Future Contracts"
-        case future_contracts
+        future_contracts
+        case @prompt.select("", %w(Previous Exit))
         when "Previous"
             puts "\e[H\e[2J"
             contracts_loop

@@ -11,6 +11,10 @@ def liftable_amount
     @prompt.yes?("Please confirm the amount liftable is #{@liftable_amount}")
 end
 
+def demand_amount
+    @demand = @prompt.ask("Please enter your demand:", convert: :int)
+end
+
 def pickup_date
     @date_input = @prompt.ask("Please enter the pick up data as YYYY-MM-DD:")
 end
@@ -24,24 +28,30 @@ def mprcontracts
     puts "\e[H\e[2J"
     choose_producer
     choose_pickup_location
-    choose_type_of_product
-    liftable_amount
-    price_per_bbl_pro
-    pickup_date
     @rep = Midstream.find_by(user_name: @input_user)
     @producer = Producer.find_by(producer_name:@producer_selected)
-    @total_price = @price * @liftable_amount
-    MPrContract.create(midstream_id: @rep.id, producer_id: @producer.id, total_price: @total_price, pickup_date: @date_input.to_date)
-    puts "\e[H\e[2J"
-    puts "=" * 100
-    puts " "
-    puts "Contract has been made!"
-    puts " "
-    puts "=" * 100
-    case @prompt.select("Choose your option", %w(Previous Exit))
-    when "Previous"
-        user_menu_loop
+    choose_type_of_product
+    liftable_amount
+    demand_amount
+    pickup_date
+    if @demand > @liftable_amount + @producer.daily_production * ((Time.parse(@date_input) - Time.now)/3600/24)
+        puts "Not enought production, check back later"
+        contracts_loop
     else
-        exit
+        price_per_bbl_pro
+        @total_price = @price * @demand
+        MPrContract.create(midstream_id: @rep.id, producer_id: @producer.id, total_price: @total_price, pickup_date: @date_input.to_date)
+        puts "\e[H\e[2J"
+        puts "=" * 100
+        puts " "
+        puts "Contract has been made!"
+        puts " "
+        puts "=" * 100
+        case @prompt.select("Choose your option", %w(Previous Exit))
+        when "Previous"
+            user_menu_loop
+        else
+            exit
+        end
     end
 end
