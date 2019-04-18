@@ -12,23 +12,24 @@
 
 ActiveRecord::Schema.define(version: 5) do
 
+  create_table "m_pr_contracts", force: :cascade do |t|
+    t.string "midstream_id"
+    t.string "producer_id"
+    t.integer "total_price"
+    t.date "pickup_date"
+  end
+
+  create_table "m_pu_contracts", force: :cascade do |t|
+    t.integer "midstream_id"
+    t.integer "purchaser_id"
+    t.integer "total_price"
+    t.date "delivery_date"
+  end
+
   create_table "midstreams", force: :cascade do |t|
     t.string "rep_name"
     t.string "user_name"
     t.string "password"
-  end
-
-  create_table "mprcontracts", force: :cascade do |t|
-    t.string "midstream_id"
-    t.string "producer_id"
-    t.integer "total_price"
-  end
-
-  create_table "mpucontracts", force: :cascade do |t|
-    t.string "name"
-    t.integer "midstream_id"
-    t.integer "purchaser_id"
-    t.integer "total_price"
   end
 
   create_table "producers", force: :cascade do |t|

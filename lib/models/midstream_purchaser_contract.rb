@@ -1,4 +1,4 @@
 class MPuContract < ActiveRecord::Base
     belongs_to :purchaser
-    has_many :users
+    belongs_to :midstream
 end

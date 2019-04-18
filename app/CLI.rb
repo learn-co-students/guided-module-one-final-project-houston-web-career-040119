@@ -1,24 +1,33 @@
 require_relative '../config/environment'
 require 'tty-prompt'
+require 'pry'
 
 @prompt = TTY::Prompt.new
 
-require_relative '../lib/models/query_method.rb'
-require_relative '../lib/models/run_loops.rb'
-
+# require_relative '../lib/models/query_method.rb'
+# require_relative '../lib/models/run_loops.rb'
+require_all 'lib'
+$quit = false
 
 #option for login or register 
 
-welcome_page
-if @choice == "Login"
-    puts "\e[H\e[2J"
-    login_loop
-elsif @choice == "Register"
-    puts "\e[H\e[2J"
-    register_loop
-else
-    exit
+def main_menu
+    while(!$quit)
+        case welcome_page
+        when "Login"
+            puts "\e[H\e[2J"
+            login_loop
+        when "Register"
+            puts "\e[H\e[2J"
+            register_loop
+        when "Exit"
+            exit
+        end
+    end
 end
+
+main_menu
+
 
 
 

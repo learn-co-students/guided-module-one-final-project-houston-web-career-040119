@@ -5,7 +5,7 @@ Purchaser.create(purchaser_name: "National Train", type_of_product: "D6", amount
 
 Purchaser.create(purchaser_name: "United Airline", type_of_product: "Jet Fuel", amount_demand: 125000, location: "Humble", price_per_bbl: 86)
 
-Purchaser.create(purchaser_name: "National Ship", type_of_product: "Mazut", amount_demand: 8000, location: "Gulft Coast", price_per_bbl: 103)
+Purchaser.create(purchaser_name: "National Ship", type_of_product: "Mazut", amount_demand: 8000, location: "Gulf Coast", price_per_bbl: 103)
 
 Purchaser.create(purchaser_name: "Fedex", type_of_product: "ULSD", amount_demand: 200000, location: "Humble", price_per_bbl: 126)
 
