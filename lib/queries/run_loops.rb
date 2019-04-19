@@ -48,11 +48,6 @@ def user_menu_loop
     when "Contracts"
         contracts_loop               
     else
-        # puts "<" * 100
-        # puts " "
-        # puts "Under construction!"
-        # puts " "
-        # puts ">" * 100
         account_management_menu_loop
     end
 end

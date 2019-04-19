@@ -1,6 +1,6 @@
 require 'pry'
 
-# chosen_location = choose_location
+
 
 def choose_purchaser
     @purchaser_selected = @prompt.select("Please choose your purchaser:", %w(Exxon\ Mobil National\ Train United\ Airline National\ Train National\ Ship Fedex UPS Flint\ Hill\ Resources))
@@ -20,7 +20,7 @@ def choose_delivery_location
     @location_selected = @prompt.select("Please choose your location:", %w(Baytown New\ Orleans Humble Gulf\ Coast Fort\ Worth Corpus\ Christi))
 end
     
-    # chosen_location = choose_location
+    
 
 def price_per_bbl_pur
     @price = Purchaser.find_by(purchaser_name: @purchaser_selected).price_per_bbl
@@ -56,7 +56,6 @@ def mpucontracts
     end
 end
 
-# binding.pry
 
 
 
